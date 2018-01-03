@@ -64,7 +64,7 @@ class LogStash::Filters::Redis < LogStash::Filters::Base
   def register
     @redis = nil
     @logger.debug("Registering Redis Filter plugin")
-    self.lookup_cache ||= LruRedux::ThreadSafeCache.new(@lru_cache_size, @ttl)
+    self.lookup_cache ||= LruRedux::TTL::ThreadSafeCache.new(@lru_cache_size, @ttl)
     @logger.debug("Created cache...")
   end
 
